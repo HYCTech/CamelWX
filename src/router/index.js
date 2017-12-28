@@ -17,6 +17,43 @@ export default new Router({
       component:_import('index')
     },
     {
+      path: '/evaluation',
+      name: '评价',
+      component:_import('evaluation')
+    },
+    {
+      path: '/prirRpair',
+      name: '个人报修',
+      component:_import('prirRpair')
+    },
+    {
+      path: '/pubRepair',
+      name: '公共报修',
+      component:_import('pubRepair')
+    },
+    {
+      path: '/repairInfo',
+      name: '报修信息',
+      component:_import('repairInfo')
+    },
+    {
+      path: '/userBind',
+      name: '用户绑定',
+      component:_import('userBind')
+    },
+    {
+      path: '/userInfo',
+      name: '用户信息',
+      component:_import('userInfo')
+    },
+    {
+      path: '/validation',
+      name: '验收',
+      component:_import('validation')
+    },
+
+
+    {
       path: '/upload',
       name: 'upload',
       component:upload
