@@ -31,7 +31,7 @@
         </yd-cell-item>
     </yd-cell-group>
 
-<yd-button class="mt30" size="large" type="primary" shape="circle">提交</yd-button>
+<yd-button class="mt30" size="large" type="primary"  shape="circle">提交</yd-button>
      
     </div>
 </template>

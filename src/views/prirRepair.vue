@@ -28,12 +28,13 @@
       </yd-cell-group>
     </yd-cell-group>
     <uploads></uploads>
-    <yd-button class="mt30" size="large" @click="submitRepairnInfo" type="primary" >提交</yd-button>
+    <yd-button class="mt30 submit" size="large" type="primary" @click="submitRepairnInfo" shape="circle">提交</yd-button>
+
   </div>
 </template>
 
 <script>
-  import {uploads}from'../components/upload.vue'
+  import uploads from'../components/upload.vue'
     export default {
       name:'prirRepair',
       data(){
@@ -61,6 +62,11 @@
 </script>
 
 <style>
-
+.submit{
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 </style>
