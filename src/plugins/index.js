@@ -1,7 +1,9 @@
 import intercepter from './intercepter'
+
 export default {
     install(Vue, opts) {
-        intercepter(Vue, opts);
+        intercepter(Vue, opts)
+    
 
         Vue.mixin({
             created() {

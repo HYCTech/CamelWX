@@ -12,6 +12,7 @@ import YDUI from 'vue-ydui';
 import './router/interception'  //路由拦截
 import 'vue-ydui/dist/ydui.rem.css';
 import './assets/flexible'
+import 'vue-ydui/dist/ydui.base.css';
 import './assets/scss/base.scss'
 import './assets/scss/main.scss'
 
