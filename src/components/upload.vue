@@ -3,12 +3,12 @@
   <div>
     <div class="btns">
  
-      <yd-button class="addImg" size="small"  bgcolor="#000" color="#FFF" >添加照片</yd-button>
+      <yd-button class="addImg" size="small"  >添加照片</yd-button>
       
        <input type="file" accept="image/*" @change="fileChanged"  ref="file" multiple="multiple">
     </div>
        
-      <div >
+      <div class="images">
         <img :src=item alt="" v-for="item in imgs">
        </div>
   </div>
@@ -47,6 +47,15 @@ img{
   .addImg{
     height: 75px;
     width: 50%;
+    background: url(../assets/images/photo.png) 20px center no-repeat;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 10px;
+    background-size: 1rem;
+    font-size: .3rem;
+    font-weight: 700;
+    color: rgb(41, 40, 40);
   }
   position: relative;
   input{
@@ -60,4 +69,7 @@ img{
   }
 }
 
+.images{
+  padding-bottom: auto;
+}
 </style>

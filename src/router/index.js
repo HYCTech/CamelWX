@@ -24,7 +24,7 @@ export default new Router({
     {
       path: '/prirRepair',
       name: '个人报修',
-      component:_import('prirRepair')
+      component:_import('priRepair')
     },
     {
       path: '/pubRepair',
