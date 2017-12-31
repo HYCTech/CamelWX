@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pb20">
     <yd-cell-group>
       <yd-cell-item>
         <span slot="left">第几栋：</span>
