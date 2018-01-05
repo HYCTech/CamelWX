@@ -1,15 +1,12 @@
 <template>
   <div class="pb20">
     <yd-cell-group>
-      <yd-cell-item>
-        <span slot="left">第几栋：</span>
-        <input slot="right" v-model="repairInfo.buildNum" type="text" placeholder=" 请输入栋数  例东3#">
-      </yd-cell-item>
-      <yd-cell-item>
-        <span slot="left">房号：</span>
-        <input slot="right" v-model="repairInfo.roomNum" type="number" placeholder=" 请输入房号 例2109">
-      </yd-cell-item>
-
+   
+      <yd-cell-group class="mt20" title="报修位置备注">
+        <yd-cell-item>
+          <yd-textarea slot="right" v-model="repairInfo.remarks" placeholder="备注" maxlength="70"></yd-textarea>
+        </yd-cell-item>
+      </yd-cell-group>
 
       <yd-cell-item arrow type="label">
         <span slot="left">报修类别：</span>
@@ -40,8 +37,9 @@
       data(){
           return{
               repairInfo:{
-                buildNum:'',
-                roomNum:'',
+                remarks:'',
+                // buildNum:'',
+                // roomNum:'',
                 category:'',
                 repairContent:''
               }
