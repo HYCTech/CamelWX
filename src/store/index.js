@@ -10,7 +10,9 @@ let modules ={
 }
 
 let state = {
-    loading:false
+    loading:false,
+    position:'',
+    address:"",
   
 }
 
@@ -24,6 +26,10 @@ let actions={
 let mutations = {
     SET_LOADING(state,info){
         state.loading = info
+    },
+    SET_ADDRESS(state,info){
+        state.address = info
+        console.log('ddd'+state.address)
     }
     
 }

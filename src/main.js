@@ -16,7 +16,7 @@ import 'vue-ydui/dist/ydui.base.css';
 import './assets/scss/base.scss'
 import './assets/scss/main.scss'
 
-
+import AMap from 'vue-amap';
 
 window.Cookies = cookie;
 Vue.config.productionTip = false

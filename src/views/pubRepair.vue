@@ -1,10 +1,12 @@
 <template>
   <div class="pb20">
-    <yd-cell-group>
-   
-      <yd-cell-group class="mt20" title="报修位置备注">
+     
+      <Map></Map>
+    <div class="repairSet">报修位置:<div class="address">{{address}}</div> </div> 
+    <yd-cell-group class="">
+      <yd-cell-group class="mt10" title="请输入报修备注">       
         <yd-cell-item>
-          <yd-textarea slot="right" v-model="repairInfo.remarks" placeholder="备注" maxlength="70"></yd-textarea>
+          <yd-textarea slot="right" v-model="repairInfo.remarks" placeholder="" maxlength="70"></yd-textarea>
         </yd-cell-item>
       </yd-cell-group>
 
@@ -25,13 +27,15 @@
       </yd-cell-group>
     </yd-cell-group>
     <uploads></uploads>
-    <yd-button class="mt30 submit" size="large" type="primary" @click="submitRepairnInfo" shape="circle">提交</yd-button>
+    <yd-button class="mt30 mb30 submit" size="large" type="primary" @click="submitRepairnInfo" shape="circle">提交</yd-button>
 
   </div>
 </template>
 
 <script>
-  import uploads from'../components/upload.vue'
+  import uploads from'@/components/upload.vue'
+  import Map from'@/components/map.vue'
+  import {mapState } from 'vuex'
     export default {
       name:'prirRepair',
       data(){
@@ -45,8 +49,14 @@
               }
           }
       },
+      computed: mapState({
+          address() {
+          return this.$store.state.address
+          }
+        }),
       components:{
-        uploads
+        uploads,
+        Map
       },
       methods:{
           submitRepairnInfo(){
@@ -60,6 +70,16 @@
 </script>
 
 <style>
+.repairSet{
+  margin-top: 55%;
+  color: #888;
+  font-size: .25rem;
+}
+.address{
+  color: #010101;
+  font-size: .3rem;  
+  
+}
 .submit{
   width: 80%;
   display: block;
