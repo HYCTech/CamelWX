@@ -2,48 +2,54 @@
   <div class="pb20">
     <yd-cell-group>
       <yd-cell-item>
-        <span slot="left">第几栋：</span>
-        <input slot="right" v-model="repairInfo.buildNum" type="text" placeholder=" 请输入栋数  例东3#">
-      </yd-cell-item>
-      <yd-cell-item>
         <span slot="left">房号：</span>
-        <input slot="right" v-model="repairInfo.roomNum" type="number" placeholder=" 请输入房号 例2109">
+        <input slot="right" v-model="repairInfo.department" type="text" placeholder="  例 5#2109">
       </yd-cell-item>
 
 
       <yd-cell-item arrow type="label">
         <span slot="left">报修类别：</span>
-        <select v-model="repairInfo.category" slot="right">
+        <select v-model="repairInfo.repair_type" slot="right">
           <option value="">选择类别</option>
-          <option value="1">灯具</option>
-          <option value="2">厕所</option>
-          <option value="3">门锁</option>
+          <option value="灯具">灯具</option>
+          <option value="厕所">厕所</option>
+          <option value="门锁">门锁</option>
         </select>
       </yd-cell-item>
 
       <yd-cell-group class="mt20" title="报修信息">
         <yd-cell-item>
-          <yd-textarea slot="right" v-model="repairInfo.repairContent" placeholder="请输入您报修的内容" maxlength="120"></yd-textarea>
+          <yd-textarea slot="right" v-model="repairInfo.content" placeholder="请输入您报修的内容" maxlength="120"></yd-textarea>
         </yd-cell-item>
       </yd-cell-group>
     </yd-cell-group>
     <uploads></uploads>
-    <yd-button class="mt30 mb30 submit" size="large" type="primary" @click="submitRepairnInfo" shape="circle">提交</yd-button>
+    <yd-button class="mt30 mb30 submit" size="large" type="primary" @click.native="submitInfo" shape="circle">提交</yd-button>
 
   </div>
 </template>
 
 <script>
+  import * as api from "@/api/repair";
+
   import uploads from'../components/upload.vue'
     export default {
       name:'prirRepair',
       data(){
           return{
               repairInfo:{
-                buildNum:'',
-                roomNum:'',
-                category:'',
-                repairContent:''
+                department:'',
+                employee_name:'',
+                telephone_number:'',
+                repair_type:'',
+                date:(new Date()).toLocaleDateString(),
+                content:'',
+                picture:'1515162173042.jpg',
+                material_cost:'',
+                maintenance_cost:'',
+                offer:'',
+                order_state:'',
+                order_type:'personal'
               }
           }
       },
@@ -51,8 +57,23 @@
         uploads
       },
       methods:{
-          submitRepairnInfo(){
-            console.log(repairInfo)
+          submitInfo(){
+            // console.log('api',api)
+            // addPicture(data).then(res=>{
+            //   this.picture=res
+            //   if(this.picture!=='') {
+            //     api.addRepair(this.repairInfo).then(res=>{
+            //       console.log(res)
+            //     })
+            //   }
+            // })
+             if(this.picture!=='') {
+                api.addRepair(this.repairInfo).then(res=>{
+                  console.log(res)
+                })
+              }
+
+           
           }
       }
 

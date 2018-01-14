@@ -20,4 +20,7 @@ export const getConfigInfo = () =>{
 //微信支付预下单数据(测试版)
 export const pay = () =>{
   return axios.post(`${baseUrl}prepay`)    
-} 
+}
+
+
+
