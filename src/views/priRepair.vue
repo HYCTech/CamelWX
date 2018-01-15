@@ -6,7 +6,6 @@
         <input slot="right" v-model="repairInfo.department" type="text" placeholder="  例 5#2109">
       </yd-cell-item>
 
-
       <yd-cell-item arrow type="label">
         <span slot="left">报修类别：</span>
         <select v-model="repairInfo.repair_type" slot="right">
@@ -31,7 +30,7 @@
 
 <script>
   import * as api from "@/api/repair";
-
+  import {mapState } from 'vuex'
   import uploads from'../components/upload.vue'
     export default {
       name:'prirRepair',
@@ -44,7 +43,7 @@
                 repair_type:'',
                 date:(new Date()).toLocaleDateString(),
                 content:'',
-                picture:'1515162173042.jpg',
+                picture:'',
                 material_cost:'',
                 maintenance_cost:'',
                 offer:'',
@@ -53,20 +52,18 @@
               }
           }
       },
+      computed: mapState({
+          imgUrl() {
+          return this.$store.state.imgUrl
+          }
+        }),
       components:{
         uploads
       },
       methods:{
           submitInfo(){
-            // console.log('api',api)
-            // addPicture(data).then(res=>{
-            //   this.picture=res
-            //   if(this.picture!=='') {
-            //     api.addRepair(this.repairInfo).then(res=>{
-            //       console.log(res)
-            //     })
-            //   }
-            // })
+            this.repairInfo.picture=this.imgUrl
+
              if(this.picture!=='') {
                 api.addRepair(this.repairInfo).then(res=>{
                   console.log(res)

@@ -13,6 +13,7 @@ let state = {
     loading:false,
     position:'',
     address:"",
+    imgUrl:[]
   
 }
 
@@ -30,7 +31,13 @@ let mutations = {
     SET_ADDRESS(state,info){
         state.address = info
         console.log('ddd'+state.address)
-    }
+    },
+    SET_IMGURL(state,info){
+        console.log('传进来的值', info)
+        state.imgUrl.push(info)
+        console.log('复制给数组', state.imgUrl)
+        
+    },
     
 }
 let getters = {
