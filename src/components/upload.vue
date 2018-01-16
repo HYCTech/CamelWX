@@ -69,6 +69,7 @@
         }; //添加请求头
         api.addPicture(param, config).then(res => {
           console.log('上传', res)
+          alert('提交成功')
         })
       }
 
