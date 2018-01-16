@@ -1,8 +1,8 @@
 export default {
     development: {
-        host: 'http://localhost:8081/api'
+        host: 'http://api.yx101.cn/'
     },
     production: {
-        host: 'https://rk.fzgi.cn/app'
+        host: 'http://api.yx101.cn/'
     }
 }

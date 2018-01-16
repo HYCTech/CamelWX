@@ -38,16 +38,17 @@
           return{
               repairInfo:{
                 department:'',
-                employee_name:'',
+                employee_name:'cxxDemo',
                 telephone_number:'',
                 repair_type:'',
                 date:(new Date()).toLocaleDateString(),
                 content:'',
                 picture:'',
+                minPicture:'',
                 material_cost:'',
                 maintenance_cost:'',
                 offer:'',
-                order_state:'',
+                order_state:'pending',
                 order_type:'personal'
               }
           }
@@ -63,7 +64,6 @@
       methods:{
           submitInfo(){
             this.repairInfo.picture=this.imgUrl
-
              if(this.picture!=='') {
                 api.addRepair(this.repairInfo).then(res=>{
                   console.log(res)

@@ -13,7 +13,7 @@
     </div>
 
     <div class="images">
-      <img :src=item alt="" v-for="item in imgs">
+      <img :src="item" alt="" v-for="(item,index) in imgs" :key="index">
     </div>
     <!-- <yd-button class="upload" size="small"  @click.native="upLoad" >上传照片</yd-button>        -->
   </div>
@@ -43,7 +43,7 @@
           }
         }; //添加请求头
         api.addPicture(param, config).then(res => {
-          this.$store.commit('SET_IMGURL', res.filename)
+          this.$store.commit('SET_IMGURL',   `http://api.yx101.cn/img/${res.filename}`)
           console.log('上传', res)
         })
 
