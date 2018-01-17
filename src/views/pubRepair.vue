@@ -69,7 +69,7 @@
 
 </script>
 
-<style>
+<style scoped>
 .repairSet{
   margin-top: 55%;
   color: #888;

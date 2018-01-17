@@ -30,61 +30,100 @@
 
 <script>
   import * as api from "@/api/repair";
-  import {mapState } from 'vuex'
-  import uploads from'../components/upload.vue'
-    export default {
-      name:'prirRepair',
-      data(){
-          return{
-              repairInfo:{
-                department:'',
-                employee_name:'cxxDemo',
-                telephone_number:'',
-                repair_type:'',
-                date:(new Date()).toLocaleDateString(),
-                content:'',
-                picture:'',
-                minPicture:'',
-                material_cost:'',
-                maintenance_cost:'',
-                offer:'',
-                order_state:'pending',
-                order_type:'personal'
+  import {
+    mapState
+  } from 'vuex'
+  import uploads from '../components/upload.vue'
+  export default {
+    name: 'prirRepair',
+    data() {
+      return {
+        repairInfo: {
+          department: '',
+          employee_name: 'cxxDemo',
+          telephone_number: '',
+          repair_type: '',
+          date: (new Date()).toLocaleDateString(),
+          content: '',
+          picture: '',
+          minPicture: '',
+          material_cost: '',
+          maintenance_cost: '',
+          offer: '',
+          order_state: 'pending',
+          order_type: 'personal'
+        }
+      }
+    },
+    computed: mapState({
+      imgUrl() {
+        return this.$store.state.imgUrl
+      }
+    }),
+    components: {
+      uploads
+    },
+    methods: {
+      submitInfo() {
+        this.repairInfo.picture = this.imgUrl
+        this.openConfrim()
+        //  if(this.picture!=='') {
+        //     api.addRepair(this.repairInfo).then(res=>{
+        //       console.log(res)
+        //     })
+        //   }
+
+
+      },
+      openConfrim() {
+        let _this=this
+        this.$dialog.confirm({
+          title: '提交成',
+          mes: '继续报修请点击继续,查看报修信息请点击查看',
+          opts: [{
+              txt: '取消',
+              color: false,
+              callback: () => {
+                //  let arr=Reflect.ownKeys(this.repairInfo)
+                //  arr.forEach((item)=>{
+                //    _this.repairInfo.item='';
+                //  })
+                // this.repairInfo.forEach((item)=>console.log(item))
+                this.$router.go(0)
+                // this.$router.replace({
+                //   path: `/priRepair`
+                // })
+                // this.$router.push({
+                //   path: `/priRepair`
+                // })
               }
-          }
-      },
-      computed: mapState({
-          imgUrl() {
-          return this.$store.state.imgUrl
-          }
-        }),
-      components:{
-        uploads
-      },
-      methods:{
-          submitInfo(){
-            this.repairInfo.picture=this.imgUrl
-             if(this.picture!=='') {
-                api.addRepair(this.repairInfo).then(res=>{
-                  console.log(res)
+            },
+            {
+              txt: '确定',
+              color: false,
+              callback: () => {
+                this.$router.push({
+                  path: `/repairInfo`
                 })
               }
-
-           
-          }
+            }
+          ]
+        });
       }
-
-
+    },
+    mounted(){
+      console.log('this.repairInfo.department')
+    }
   }
 
 </script>
 
-<style>
-.submit{
-  width: 80%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
+<style scoped>
+  .submit {
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
 </style>

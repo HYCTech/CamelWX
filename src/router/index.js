@@ -22,7 +22,7 @@ export default new Router({
       component:_import('evaluation')
     },
     {
-      path: '/prirRepair',
+      path: '/priRepair',
       name: '个人报修',
       component:_import('priRepair')
     },
