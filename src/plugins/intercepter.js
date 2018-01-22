@@ -3,10 +3,12 @@ import _ from 'lodash'
 import store from '@/store'
 import config from '@/config'
 import router from '../router'
-
+import * as api from "@/api/index.js";
+import { mapState } from "vuex";
 const requests = []
 
 export default (Vue) => {
+    
     Object.defineProperties(Vue.prototype, {
             $http: {
                 value: axios
@@ -17,8 +19,11 @@ export default (Vue) => {
    axios.defaults.timeout = 10000
     axios.defaults.timeout = 10000
         // 添加拦截器
+        
     axios.interceptors.request.use(function(config) {
         store.dispatch('setLoading', true)
+        
+        store.dispatch('SET_OPENID', true)
         requests.push(config)
         return config
     }, function(error) {
@@ -56,4 +61,5 @@ export default (Vue) => {
         }
         return Promise.reject(error)
     })
+
 }

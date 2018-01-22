@@ -11,11 +11,23 @@
 
 <script>
 import router from '../router'
+import * as api from "@/api/index.js";
+import { mapState } from "vuex";
+import axios from 'axios'
 export default {
   data() {
     return {
        routerList:router.options.routes.filter(i=>i.name)
     };
+  },
+  methods:{
+    ...mapState(['openID'])
+  },
+  mounted(){
+      api.getWx({url:'http://wx.yx101.cn/#/userBind'}).then(res=>{
+        console.log(res)
+  //  location.href=`${res}`
+      })
   }
 };
 </script>

@@ -13,6 +13,7 @@ let state = {
     loading:false,
     position:'',
     address:"",
+    openID:'',
     imgUrl:[]
   
 }
@@ -27,6 +28,9 @@ let actions={
 let mutations = {
     SET_LOADING(state,info){
         state.loading = info
+    },
+    SET_OPENID(state,info){
+        state.openID = info
     },
     SET_ADDRESS(state,info){
         state.address = info
