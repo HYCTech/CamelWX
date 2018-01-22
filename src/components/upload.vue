@@ -6,7 +6,6 @@
         <input type="file" name="file" accept="image/*" @change="fileChanged" ref="file" multiple="multiple">
       </form>
     </div>
-<img src="../assets/images/photo.png" alt="">
     <div class="images">
       <img :src="item" alt="" v-for="(item,index) in imgs" :key="index">
     </div>
@@ -39,7 +38,7 @@
           }
         }; //添加请求头
         api.addPicture(param, config).then(res => {
-          this.$store.commit('SET_IMGURL', `http://api.yx101.cn/img/${res.filename}`)
+          this.$store.commit('SET_IMGURL', `http://api.yx101.cn/img/${res.filename,res.minFilename}`)
           // this.imgs.push(`http://api.yx101.cn/img/${res.filename}`)
           console.log('上传', res)
         })
@@ -83,6 +82,7 @@
 
   .btns {
       position: relative;
+    
     .addImg {
       height: 75px;
       width: 50%;
@@ -96,7 +96,6 @@
       font-weight: 700;
       color: rgb(41, 40, 40);
     }
-    
     input {
       z-index: 3;
       height: 0.75rem;
@@ -111,3 +110,4 @@
   .images {
     padding-bottom: auto;
   }
+  </style>

@@ -24,9 +24,15 @@ export default {
     ...mapState(['openID'])
   },
   mounted(){
-      api.getWx({url:'http://wx.yx101.cn/#/userBind'}).then(res=>{
-        console.log(res)
-  //  location.href=`${res}`
+      api.passWx({url:'http://wx.yx101.cn/#/userBind'}).then(res=>{
+
+      //  this.$router.get( '/userInfocode=021xrKGC0znILc22iAHC07RLGC0xrKGF' )
+        // if(window.localStorage.openID=''){
+        //   window.location.href=`${res}`
+        // }
+        // else{
+
+        // }
       })
   }
 };

@@ -23,7 +23,7 @@ export default (Vue) => {
     axios.interceptors.request.use(function(config) {
         store.dispatch('setLoading', true)
         
-        store.dispatch('SET_OPENID', true)
+        // store.dispatch('SET_OPENID', true)
         requests.push(config)
         return config
     }, function(error) {
