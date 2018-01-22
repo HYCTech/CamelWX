@@ -1,4 +1,3 @@
-<!-- by your name -->
 <template>
   <div>
     <div class="btns">
@@ -111,5 +110,3 @@
   .images {
     padding-bottom: auto;
   }
-
-</style>

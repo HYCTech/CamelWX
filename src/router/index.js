@@ -22,6 +22,11 @@ export default new Router({
       component:_import('evaluation')
     },
     {
+      path: '/order',
+      name: '接单',
+      component:_import('order')
+    },
+    {
       path: '/priRepair',
       name: '个人报修',
       component:_import('priRepair')

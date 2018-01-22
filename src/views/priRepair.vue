@@ -46,11 +46,10 @@
           date: (new Date()).toLocaleDateString(),
           content: '',
           picture: '',
-          minPicture: '',
           material_cost: '',
           maintenance_cost: '',
           offer: '',
-          order_state: 'pending',
+          order_state: 'waiting',
           order_type: 'personal'
         }
       }
@@ -67,28 +66,21 @@
       submitInfo() {
         this.repairInfo.picture = this.imgUrl
         this.openConfrim()
-        //  if(this.picture!=='') {
-        //     api.addRepair(this.repairInfo).then(res=>{
-        //       console.log(res)
-        //     })
-        //   }
 
 
       },
       openConfrim() {
-        let _this=this
+        console.log('res')
+        // this.$dialog.loading.open('正在提交中...');
         this.$dialog.confirm({
-          title: '提交成',
-          mes: '继续报修请点击继续,查看报修信息请点击查看',
+          title: '提交成功',
+          mes: '继续报修请点击继续!!  查看报修信息请点击查看!!',
           opts: [{
-              txt: '取消',
+              txt: '继续',
               color: false,
               callback: () => {
-                //  let arr=Reflect.ownKeys(this.repairInfo)
-                //  arr.forEach((item)=>{
-                //    _this.repairInfo.item='';
-                //  })
-                // this.repairInfo.forEach((item)=>console.log(item))
+                
+                // this.repairInfo.department=''
                 this.$router.go(0)
                 // this.$router.replace({
                 //   path: `/priRepair`
@@ -99,8 +91,8 @@
               }
             },
             {
-              txt: '确定',
-              color: false,
+              txt: '查看',
+              color: true,
               callback: () => {
                 this.$router.push({
                   path: `/repairInfo`
