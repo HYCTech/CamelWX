@@ -2,14 +2,10 @@
 <template>
   <div>
     <div class="btns">
-
       <yd-button class="addImg" size="small">添加照片</yd-button>
-
       <form id="uploadForm" enctype="multipart/form-data">
         <input type="file" name="file" accept="image/*" @change="fileChanged" ref="file" multiple="multiple">
       </form>
-
-      <!-- <input type="file" accept="image/*" @change="fileChanged"  ref="file" multiple="multiple"> -->
     </div>
 
     <div class="images">
@@ -33,6 +29,7 @@
     methods: {
       fileChanged(e) {
         let file = e.target.files[0];
+        console.log(file.size)
         let param = new FormData(); //创建form对象
         param.append('file', file, file.name); //通过append向form对象添加数据
         param.append('chunk', '0'); //添加form表单中其他数据
@@ -43,7 +40,8 @@
           }
         }; //添加请求头
         api.addPicture(param, config).then(res => {
-          this.$store.commit('SET_IMGURL',   `http://api.yx101.cn/img/${res.filename}`)
+          this.$store.commit('SET_IMGURL', `http://api.yx101.cn/img/${res.filename}`)
+          // this.imgs.push(`http://api.yx101.cn/img/${res.filename}`)
           console.log('上传', res)
         })
 
@@ -57,7 +55,7 @@
           console.log(this.imgs)
         };
         console.log(this.list);
-        //this.$refs.file.value = "";
+        this.$refs.file.value = "";
       },
       upLoad() {
         let param = new FormData()
