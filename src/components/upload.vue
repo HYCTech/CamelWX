@@ -6,7 +6,7 @@
         <input type="file" name="file" accept="image/*" @change="fileChanged" ref="file" multiple="multiple">
       </form>
     </div>
-
+<img src="../assets/images/photo.png" alt="">
     <div class="images">
       <img :src="item" alt="" v-for="(item,index) in imgs" :key="index">
     </div>
@@ -82,10 +82,11 @@
   }
 
   .btns {
+      position: relative;
     .addImg {
       height: 75px;
       width: 50%;
-      background: url(../assets/images/photo.png) 20px center no-repeat;
+      background: url('../assets/images/photo.png') 20px center no-repeat;
       padding-left: 10px;
       padding-top: 10px;
       padding-bottom: 10px;
@@ -95,7 +96,7 @@
       font-weight: 700;
       color: rgb(41, 40, 40);
     }
-    position: relative;
+    
     input {
       z-index: 3;
       height: 0.75rem;
