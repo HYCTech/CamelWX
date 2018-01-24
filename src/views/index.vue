@@ -20,20 +20,34 @@ export default {
        routerList:router.options.routes.filter(i=>i.name)
     };
   },
-  methods:{
+  computed:{
     ...mapState(['openID'])
   },
+  methods:{
+    
+  },
   mounted(){
-      api.passWx({url:'http://wx.yx101.cn/#/userBind'}).then(res=>{
+      if(window.localStorage.openID=''){
+        api.passWx({url:'http://wx.yx101.cn/#/userBind'}).then(res=>{
+        console.log(res)
+        window.location.href=res 
+        let path = window.location.href
+          let satart=path.indexOf('code')+1
+          let last =path.lastIndexOf('&')
+          let code =path.substring(start,last)
+       api.getInfo('code').then(res1=>{
+         this.$store.commit('SET_OPENID',res1.data.openid)
+         api.getUserInfo(res1.data.openid,res1.data.refresh_token,res1.data.access_token).then(res2=>{
+         this.$store.commit('SET_USERINFO',res2.data.userInfo)
 
-      //  this.$router.get( '/userInfocode=021xrKGC0znILc22iAHC07RLGC0xrKGF' )
-        // if(window.localStorage.openID=''){
-        //   window.location.href=`${res}`
-        // }
-        // else{
+       }) 
+       })
 
-        // }
       })
+      }
+      else{
+        
+      }
   }
 };
 </script>

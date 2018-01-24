@@ -14,6 +14,7 @@ let state = {
     position:'',
     address:"",
     openID:'',
+    userInfo:'',
     imgUrl:[]
   
 }
@@ -39,9 +40,11 @@ let mutations = {
     SET_IMGURL(state,info){
         console.log('传进来的值', info)
         state.imgUrl.push(info)
-        console.log('复制给数组', state.imgUrl)
-        
+        console.log('复制给数组', state.imgUrl)  
     },
+    SET_USERINFO(state,info){
+        state.userInfo = info
+    }
     
 }
 let getters = {
