@@ -70,7 +70,7 @@
 
       sublmit() {
         api.addProprietorsInfo(this.user).then(res => {
-          window.localStorage.openID=this.openID
+          window.localStorage.yongXingOpenID=JSON.stringify(this.openID)
           console.log(res)
           this.$dialog.toast({
             mes: "绑定成功",
