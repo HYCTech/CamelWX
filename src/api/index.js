@@ -20,5 +20,8 @@ export const getUserInfo = (openid,rToken,token ) => {
  export const addProprietorsInfo = (data) => {
     return axios.post(`hycDevelop/api/owner/`,data);
 };
+//获取物业人员分页信息
+export const getPropertyOfcInfo = (filter) => {
 
-
+return axios.get(`hycDevelop/api/owner?filter=${JSON.stringify(filter)}`);
+};

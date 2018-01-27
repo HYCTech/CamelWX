@@ -16,8 +16,8 @@
             <input class='pl20' slot="right" type="number" v-model="user.telephone_number" placeholder="请输入手机号">
         </yd-cell-item> -->
       <yd-cell-item>
-        <yd-icon slot="icon" v-model="user.telephone_number" name="phone3" size=".45rem"></yd-icon>
-        <input type="text" slot="right" placeholder="请输入手机号码">
+        <yd-icon slot="icon" name="phone3" size=".45rem"></yd-icon>
+        <input type="number"  v-model="user.telephone_number" slot="right" placeholder="请输入手机号码">
 
         <!-- ↓↓关键代码是这里↓↓ -->
         <yd-sendcode slot="right" v-model="start1" @click.native="sendCode1" type="warning"></yd-sendcode>
@@ -36,6 +36,7 @@
     mapState
   } from "vuex";
   import * as api from "@/api/index.js";
+  
   export default {
     name: "userBind",
     data() {
@@ -44,7 +45,7 @@
         user: {
           owner_name: "",
           telephone_number: "",
-          wxopen_id: this.openID,
+          wxopen_id: '',
 
         }
       };
@@ -82,7 +83,8 @@
       }
     },
     mounted() {
-
+      this.user.wxopen_id=this.openID
+      console.log(this.openID)
     }
   };
 

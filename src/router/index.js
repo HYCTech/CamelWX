@@ -56,6 +56,11 @@ export default new Router({
       name: '验收',
       component:_import('validation')
     },
+    {
+      path: '/receive',
+      name: '收到的信息',
+      component:_import('receive')
+    },
 
 
     {
