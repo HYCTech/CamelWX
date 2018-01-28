@@ -70,6 +70,12 @@
 
 
       sublmit() {
+        if(this.$route.query.openid){
+         this.user.wxopen_id=this.$route.query.openid
+        }else{
+          this.user.wxopen_id=sessionStorage.openid
+
+       }
         api.addProprietorsInfo(this.user).then(res => {
           window.localStorage.yongXingOpenID=JSON.stringify(this.openID)
           console.log(res)
@@ -83,8 +89,10 @@
       }
     },
     mounted() {
-      this.user.wxopen_id=this.openID
-      console.log(this.openID)
+     console.log(this.$route)
+     
+     
+      console.log(this.openID,1)
     }
   };
 

@@ -37,12 +37,12 @@ export default new Router({
       component:_import('pubRepair')
     },
     {
-      path: '/repairInfo',
+      path: '/repairInfod',
       name: '报修信息',
       component:_import('repairInfo')
     },
     {
-      path: '/userBind',
+      path: '/userBinde',
       name: '用户绑定',
       component:_import('userBind')
     },
@@ -60,6 +60,11 @@ export default new Router({
       path: '/receive',
       name: '收到的信息',
       component:_import('receive')
+    },
+    {
+      path: '/myReceive',
+      name: '我的维修',
+      component:_import('myReceive')
     },
 
 
