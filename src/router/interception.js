@@ -42,7 +42,8 @@ router.beforeEach((to, from, next) => {
       }else{
         console.log('没有认证')
         let _this=this
-       code =location.search.substring(1).split('&')[0].split('=')[1]
+        code =location.search.substring(1).split('&')[0].split('=')[1]
+        let redirect = location.href.split('state=#')[1]
        console.log(!window.location.href.includes('openid'),window.location.href)
        if(!window.location.href.includes('openid')){
         console.log(code)
@@ -59,7 +60,6 @@ router.beforeEach((to, from, next) => {
                     api.getUserInfo(res1.data.openid,res1.data.refresh_token,res1.data.access_token).then(res3=>{
                         store.commit('SET_USERINFO',res3.data.userInfo)
                         next({query:{openid:res1.data.openid}})
-                   
                       })
                 }
                 else {
@@ -67,7 +67,7 @@ router.beforeEach((to, from, next) => {
                     // store.commit('SET_OPENID',res1.data.openid)
                     api.getUserInfo(res1.data.openid,res1.data.refresh_token,res1.data.access_token).then(res3=>{
                     store.commit('SET_USERINFO',res3.data.userInfo)
-                    next({ path: `/userBinde?code=${code}&openid=${res1.data.openid}` })
+                    next({ path: `/userBinde?code=${code}&openid=${res1.data.openid}&redirect=${redirect}`,query:{redirect}})
                   //  window.location.href= location.origin+`#/userBinde?code=${code}&openid=${res1.data.openid}`
                   })
                 }

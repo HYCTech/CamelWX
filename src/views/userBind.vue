@@ -84,6 +84,11 @@
             timeout: 1500,
             icon: "success"
           });
+          setTimeout(()=>{
+            if(this.$route.query.redirect){
+              this.$router.push(this.$route.query.redirect)
+            }
+          },1500)
         })
 
       }
