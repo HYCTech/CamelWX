@@ -17,17 +17,25 @@ const setDocumentTitle = function(title) {
   }
 }
 
-let WhiteList = ['/userBinde']
+
 //路由拦截
 router.beforeEach((to, from, next) => {
-   
+
+     //白名单
+    let WhiteList = ['/receive','/receiveInfomation']
+    WhiteList.forEach( item =>{
+        if(to.path==item){
+            next()
+        }
+    })
     
  
   //改变标题
   setDocumentTitle(to.name)
   if(to.query.openid){
       next()
-  }else{
+  }
+  else{
 
     let code
     
@@ -35,21 +43,20 @@ router.beforeEach((to, from, next) => {
       if(!window.location.href.includes('code')){
           console.log('认证')
         api.passWx({url:location.href}).then(res=>{
-        console.log(res)
+        // console.log(res)
         window.location.href=res 
           
       })
       }else{
         console.log('没有认证')
-        let _this=this
         code =location.search.substring(1).split('&')[0].split('=')[1]
         let redirect = location.href.split('state=#')[1]
        console.log(!window.location.href.includes('openid'),window.location.href)
        if(!window.location.href.includes('openid')){
         console.log(code)
         api.getInfo(code).then(res1=>{    
-            console.log(res1,11)
-            console.log('用户的openid:'+res1.data.openid)
+            // console.log(res1,11)
+            // console.log('用户的openid:'+res1.data.openid)
             sessionStorage.openid=res1.data.openid
             api.getPropertyOfcInfo( {wxopen_id:res1.data.openid}).then(res2=>{
                 console.log('检查用户'+res2.data)

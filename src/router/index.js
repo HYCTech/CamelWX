@@ -58,8 +58,13 @@ export default new Router({
     },
     {
       path: '/receive',
-      name: '收到的信息',
+      name: '报价信息',
       component:_import('receive')
+    },
+    {
+      path: '/receiveInfo',
+      name: '物业通知信息',
+      component:_import('receiveInfo')
     },
     {
       path: '/myReceive',

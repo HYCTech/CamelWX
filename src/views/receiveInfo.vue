@@ -1,16 +1,9 @@
 <template>
     <div class="contain">
         <div class="info">
-            <p>维修项目: <span>{{repairInfo.type}}</span> </p>
-            <p>维修费用: <span>{{repairInfo.money}}元</span></p>
+            <h3>物业通知</h3>
+            <p>{{repairInfo.infomation}}</p>
         </div>
-        <yd-button-group>
-
-        <yd-button @click.native="openConfrim" size="large">同意</yd-button>
-
-        <yd-button @click.native="openNotify" size="large" type="danger">不同意</yd-button>
-
-    </yd-button-group>
     </div>
 </template>
 <script>
@@ -21,21 +14,20 @@ export default {
   data() {
     return {
       repairInfo: {
-        type:'灯具',
-        money:'100'
+        infomation:'业主集体开会啦'
       }
     };
   },
   computed:{
-    ...mapState(['userInfo'])
+
   },
   mothods:{
       
   },
   mounted(){
-    // api.getPropertyOfcInfo('oQBciw1V5vt5kAYoY1RqLPc-7hX8').then(res=>{
-    //   console.log(res)
-    // })
+    api.getPropertyOfcInfo('oQBciw1V5vt5kAYoY1RqLPc-7hX8').then(res=>{
+      console.log(res)
+    })
   }
 };
 </script>
@@ -54,9 +46,6 @@ export default {
     margin-top: 30px;
     p{
         font-size: 34px;
-        span{
-        color: rgb(233, 158, 47);
-        }
     }
    
     
