@@ -32,7 +32,7 @@ router.beforeEach((to, from, next) => {
  
   //改变标题
   setDocumentTitle(to.name)
-  if(to.query.openid){
+  /*if(to.query.openid){
       next()
   }
   else{
@@ -94,8 +94,8 @@ router.beforeEach((to, from, next) => {
 
   }
 
+*/
 
-
-//  next()
+ next()
   
   })

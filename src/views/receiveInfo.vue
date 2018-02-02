@@ -32,6 +32,10 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+h3{
+  text-align: center;
+  margin-top: 20px;
+}
 .contain{
     background: #fff;
     position: absolute;

@@ -65,7 +65,10 @@
     methods: {
       submitInfo() {
         this.repairInfo.picture = this.imgUrl
-        this.openConfrim()
+        api.addRepair(this.repairInfo).then(res=>{
+          console.log(res)
+        })
+        // this.openConfrim()
 
 
       },

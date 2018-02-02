@@ -37,7 +37,7 @@ export default new Router({
       component:_import('pubRepair')
     },
     {
-      path: '/repairInfod',
+      path: '/repairInfo',
       name: '报修信息',
       component:_import('repairInfo')
     },
