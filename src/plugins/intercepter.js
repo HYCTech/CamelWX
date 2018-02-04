@@ -3,8 +3,9 @@ import _ from 'lodash'
 import store from '@/store'
 import config from '@/config'
 import router from '../router'
-import * as api from "@/api/index.js";
-import { mapState } from "vuex";
+import * as api from "@/api/index.js"
+import { mapState } from "vuex"
+import { Confirm, Alert, Toast, Notify, Loading } from 'vue-ydui/dist/lib.rem/dialog'
 const requests = []
 
 export default (Vue) => {
@@ -24,7 +25,7 @@ export default (Vue) => {
 
     axios.interceptors.request.use(function(config) {
         store.dispatch('setLoading', true)
-        
+        Loading.open('加载中...')
         // store.dispatch('SET_OPENID', true)
         requests.push(config)
         return config
@@ -38,14 +39,24 @@ export default (Vue) => {
         }) 
         
         if(!requests.length){
+            Loading.close()
             setTimeout(() => {
                 store.dispatch('setLoading', false)
            }, 300)
+        }
+        if(response.data.code){
+            Toast({
+                mes:response.data.msg,
+                imeout: 1500,
+                icon: 'error'
+            })
+            return Promise.reject(response.data)
         }
 
         return response.data
     }, function(error) {
         store.dispatch('setLoading', false)
+        Loading.close()
         if (error.response) {
             console.log(error.response.status)
             switch (error.response.status) {

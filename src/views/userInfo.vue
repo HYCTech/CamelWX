@@ -2,14 +2,14 @@
 <template>
      <div class="pl20 pr20">
     <div class="userInfo mt20">
-      <img :src=userInfo.headimgurl alt="用户头像">
-      <h3 class="mt10 ">{{userInfo.nickname}}</h3>
+      <img :src="wx_info.headimgurl" alt="用户头像">
+      <h3 class="mt10 ">{{wx_info.nickname}}</h3>
     </div>
 
    <div class=" mt40 pl20 pr20 pt30 pb30 tc info">
-        <h3>业主：{{dbInfo.ownername}}</h3>
-        <h3>电话：{{dbInfo.tel}}</h3>
-        <h3>地址：{{dbInfo.address}}</h3>   
+        <h3>业主：{{uesrInfo.owner_name}}</h3>
+        <h3>电话：{{uesrInfo.telephone_number}}</h3>
+        <h3>地址：{{uesrInfo.room_number}}</h3>   
    </div>
        
 
@@ -25,22 +25,10 @@ export default {
   name: "userInfo",
   data() {
     return {
-      dbInfo: {
-        name: "康康",
-        ownername: "小唐",
-        tel: 15160777766,
-        address: "博士后家园A栋304"
-      }
+     uesrInfo:JSON.parse(sessionStorage.userInfo),
+     wx_info:JSON.parse(sessionStorage.wx_Info) 
     };
   },
-  computed:{
-    ...mapState(['userInfo'])
-  },
-  mounted(){
-    api.getPropertyOfcInfo( {wxopen_id:'oQBciw1V5vt5kAYoY1RqLPc-7hX8'}).then(res=>{
-      console.log(res)
-    })
-  }
 };
 </script>
 

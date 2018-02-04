@@ -14,11 +14,12 @@
 </template>
 
 <script>
-  import * as api from "@/api/repair";
+  import * as api from "@/api"
   import {
     mapState
   } from 'vuex'
   export default {
+    props:["uSuccess"],
     data() {
       return {
         imgs: [],
@@ -37,10 +38,8 @@
             'Content-Type': 'multipart/form-data'
           }
         }; //添加请求头
-        api.addPicture(param, config).then(res => {
-          this.$store.commit('SET_IMGURL', `http://api.yx101.cn/img/${res.filename,res.minFilename}`)
-          // this.imgs.push(`http://api.yx101.cn/img/${res.filename}`)
-          console.log('上传', res)
+        api.addPicture(param, config).then(res => { 
+            this.uSuccess(res)
         })
 
 
@@ -65,6 +64,7 @@
         }; //添加请求头
         api.addPicture(param, config).then(res => {
           console.log('上传', res)
+        
         })
       }
 

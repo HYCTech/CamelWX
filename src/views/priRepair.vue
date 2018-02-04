@@ -3,13 +3,13 @@
     <yd-cell-group>
       <yd-cell-item>
         <span slot="left">房号：</span>
-        <input slot="right" v-model="repairInfo.department" type="text" placeholder="  例 5#2109">
+        <input slot="right" v-model="repairInfo.repair_place" type="text" placeholder="  例 5#2109">
       </yd-cell-item>
 
       <yd-cell-item arrow type="label">
         <span slot="left">报修类别：</span>
         <select v-model="repairInfo.repair_type" slot="right">
-          <option value="">选择类别</option>
+          <option value="其他">选择类别</option>
           <option value="灯具">灯具</option>
           <option value="厕所">厕所</option>
           <option value="门锁">门锁</option>
@@ -22,92 +22,58 @@
         </yd-cell-item>
       </yd-cell-group>
     </yd-cell-group>
-    <uploads></uploads>
+    <!-- 图片上传 -->
+    <uploads :uSuccess="uSuccess"></uploads>
+
     <yd-button class="mt30 mb30 submit" size="large" type="primary" @click.native="submitInfo" shape="circle">提交</yd-button>
 
   </div>
 </template>
 
 <script>
-  import * as api from "@/api/repair";
-  import {
-    mapState
-  } from 'vuex'
+  import * as api from "@/api"
   import uploads from '../components/upload.vue'
   export default {
     name: 'prirRepair',
+    components: {uploads},
+    mounted(){
+      this.repairInfo.openID = this.uesrInfo.wxopen_id
+      this.repairInfo.customer_name = this.uesrInfo.owner_name
+      this.repairInfo.customer_tel = this.uesrInfo.telephone_number
+    },
     data() {
       return {
         repairInfo: {
-          department: '',
-          employee_name: 'cxxDemo',
-          telephone_number: '',
+          openID:'',
+          repair_place: '',
+          customer_name: '',
+          customer_tel: '',
           repair_type: '',
           date: (new Date()).toLocaleDateString(),
           content: '',
-          picture: '',
-          material_cost: '',
-          maintenance_cost: '',
-          offer: '',
-          order_state: 'waiting',
+          picture: [],
+          order_state: 'waitting',
           order_type: 'personal'
         }
       }
     },
-    computed: mapState({
-      imgUrl() {
-        return this.$store.state.imgUrl
-      }
-    }),
-    components: {
-      uploads
-    },
+    
     methods: {
-      submitInfo() {
-        this.repairInfo.picture = this.imgUrl
-        api.addRepair(this.repairInfo).then(res=>{
-          console.log(res)
-        })
-        // this.openConfrim()
-
-
+      uSuccess(res){
+        // console.log(res,'上传成功回调')
+        let filename =this.imgbaseUrl + res.filename
+        let minFilename =this.imgbaseUrl +res.minFilename
+        this.repairInfo.picture.push({filename,minFilename})
       },
-      openConfrim() {
-        console.log('res')
-        // this.$dialog.loading.open('正在提交中...');
-        this.$dialog.confirm({
-          title: '提交成功',
-          mes: '继续报修请点击继续!!  查看报修信息请点击查看!!',
-          opts: [{
-              txt: '继续',
-              color: false,
-              callback: () => {
-                
-                // this.repairInfo.department=''
-                this.$router.go(0)
-                // this.$router.replace({
-                //   path: `/priRepair`
-                // })
-                // this.$router.push({
-                //   path: `/priRepair`
-                // })
-              }
-            },
-            {
-              txt: '查看',
-              color: true,
-              callback: () => {
-                this.$router.push({
-                  path: `/repairInfo`
-                })
-              }
-            }
-          ]
-        });
+      submitInfo() {
+        if(this.repairInfo.repair_place&&this.repairInfo.repair_type&&this.repairInfo.content&&this.repairInfo.picture.length){     
+             api.addRepair(this.repairInfo).then(res=>{
+                 this.toastSuccess('提交成功，请等待审核') 
+             })
+        }else{
+             this.toastError('请完整填写信息！') 
+        }      
       }
-    },
-    mounted(){
-      console.log('this.repairInfo.department')
     }
   }
 
