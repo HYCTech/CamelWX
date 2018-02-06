@@ -71,6 +71,11 @@ export default new Router({
       name: '我的维修',
       component:_import('myReceive')
     },
+    {
+      path: '/worker',
+      name: '维修师傅',
+      component:_import('worker/index')
+    },
 
 
     {

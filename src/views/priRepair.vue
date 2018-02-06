@@ -23,7 +23,7 @@
       </yd-cell-group>
     </yd-cell-group>
     <!-- 图片上传 -->
-    <uploads :uSuccess="uSuccess"></uploads>
+    <uploads :uSuccess="uSuccess" :udel="del"></uploads>
 
     <yd-button class="mt30 mb30 submit" size="large" type="primary" @click.native="submitInfo" shape="circle">提交</yd-button>
 
@@ -60,10 +60,13 @@
     
     methods: {
       uSuccess(res){
-        // console.log(res,'上传成功回调')
+       //  console.log(res,'上传成功回调')
         let filename =this.imgbaseUrl + res.filename
         let minFilename =this.imgbaseUrl +res.minFilename
         this.repairInfo.picture.push({filename,minFilename})
+      },
+      del(i){
+        this.repairInfo.picture.splice(i,1)
       },
       submitInfo() {
         if(this.repairInfo.repair_place&&this.repairInfo.repair_type&&this.repairInfo.content&&this.repairInfo.picture.length){     

@@ -18,7 +18,6 @@ export default (Vue) => {
         //axios配置
     axios.defaults.baseURL = config[process.env.NODE_ENV].host
     axios.defaults.timeout = 10000
-    axios.defaults.timeout = 10000
         // 添加拦截器
         
     
