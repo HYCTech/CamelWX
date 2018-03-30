@@ -1,4 +1,4 @@
-# template
+# CamelWX 微信前端项目已停止维护
 
 > A Vue.js project
 
