@@ -19,7 +19,7 @@
                 <yd-button class="w30p mr10" @click.native="show = false">确定</yd-button>
                  <yd-button type="danger" class="w30p" @click.native="del(index)" >删除</yd-button>
             </p>
-         </div>  
+         </div>
         </yd-popup>
   </div>
 </template>
@@ -68,7 +68,7 @@ export default {
         if (this.status == 200 || this.status == 304) {
           let data = JSON.parse(this.response)
           console.log("success", data)
-        
+
           that.uSuccess(data)
           console.log(123)
            that.$dialog.loading.close()

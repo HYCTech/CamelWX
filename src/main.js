@@ -9,21 +9,19 @@ import plugin from '@/plugins'
 import cookie from 'cookies-js'
 
 import YDUI from 'vue-ydui';
-import './router/interception'  //路由拦截
+import './router/interception' //路由拦截
 import 'vue-ydui/dist/ydui.rem.css';
 import './assets/flexible'
 import 'vue-ydui/dist/ydui.base.css';
 import './assets/scss/base.scss'
 import './assets/scss/main.scss'
 
-import AMap from 'vue-amap';
+//import AMap from 'vue-amap';
 
 window.Cookies = cookie;
 Vue.config.productionTip = false
 Vue.use(plugin, {});
 Vue.use(YDUI);
-
-
 
 
 
@@ -33,5 +31,7 @@ new Vue({
   router,
   store,
   template: '<App/>',
-  components: { App }
+  components: {
+    App
+  }
 })

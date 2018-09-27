@@ -6,87 +6,72 @@ const _import = require('./_import_' + process.env.NODE_ENV)
 
 Vue.use(Router)
 export default new Router({
-  routes: [
-    {
+  routes: [{
       path: '/',
-      redirect:'index' 
-    },
-    {
+      redirect: 'index'
+    }, {
       path: '/index',
       name: 'index',
-      component:_import('index')
-    },
-    {
+      component: _import('index')
+    }, {
       path: '/evaluation',
       name: '评价',
-      component:_import('evaluation')
-    },
-    {
+      component: _import('evaluation')
+    }, {
       path: '/order',
       name: '接单',
-      component:_import('order')
-    },
-    {
+      component: _import('order')
+    }, {
       path: '/priRepair',
       name: '个人报修',
-      component:_import('priRepair')
-    },
-    {
+      component: _import('priRepair')
+    }, {
       path: '/pubRepair',
       name: '公共报修',
-      component:_import('pubRepair')
-    },
-    {
+      component: _import('pubRepair')
+    }, {
       path: '/repairInfo',
       name: '报修信息',
-      component:_import('repairInfo')
-    },
-    {
+      component: _import('repairInfo')
+    }, {
       path: '/userBinde',
       name: '用户绑定',
-      component:_import('userBind')
-    },
-    {
+      component: _import('userBind')
+    }, {
       path: '/userInfo',
       name: '用户信息',
-      component:_import('userInfo')
-    },
-    {
+      component: _import('userInfo')
+    }, {
       path: '/validation',
       name: '验收',
-      component:_import('validation')
-    },
-    {
+      component: _import('validation')
+    }, {
       path: '/receive',
       name: '报价信息',
-      component:_import('receive')
-    },
-    {
+      component: _import('receive')
+    }, {
       path: '/receiveInfo',
       name: '物业通知信息',
-      component:_import('receiveInfo')
-    },
-    {
+      component: _import('receiveInfo')
+    }, {
       path: '/myReceive',
       name: '我的维修',
-      component:_import('myReceive')
-    },
-    {
+      component: _import('myReceive')
+    }, {
       path: '/orderDetails',
       name: '维修信息',
-      component:_import('orderDetails')
-    },
-    {
-      path: '/worker',
-      name: '维修师傅',
-      component:_import('worker/index')
+      component: _import('orderDetails')
+    }, {
+      path: '/repairList',
+      name: '维修单',
+      component: _import('worker/index')
     },
 
 
     {
       path: '/upload',
       name: 'upload',
-      component:upload
+      component: upload
     }
   ]
 })
