@@ -2,14 +2,14 @@ import router from './'
 import * as api from "@/api/index.js";
 import store from '../store'
 import axios from 'axios'
-const setDocumentTitle = function (title) {
+const setDocumentTitle = function(title) {
   document.title = title;
   if (/ip(hone|od|ad)/i.test(navigator.userAgent)) {
     var i = document.createElement('iframe');
     i.src = '';
     i.style.display = 'none';
-    i.onload = function () {
-      setTimeout(function () {
+    i.onload = function() {
+      setTimeout(function() {
         i.remove();
       }, 10)
     }
@@ -47,12 +47,12 @@ const login = () => {
 router.beforeEach((to, from, next) => {
 
   //白名单
-  let WhiteList = ['/receive', '/receiveInfomation','/orderDetails']
- // login()
-  //改变标题
+  let WhiteList = ['/receive', '/receiveInfomation', '/orderDetails']
+  login()
+    //改变标题
   setDocumentTitle(to.name)
   console.log(WhiteList.includes(to.path))
-  if (to.query.openid || sessionStorage.openid ||  WhiteList.includes(to.path)) {
+  if (to.query.openid || sessionStorage.openid || WhiteList.includes(to.path)) {
     next()
   } else {
     let code
@@ -82,9 +82,11 @@ router.beforeEach((to, from, next) => {
               console.log('已有id用户')
               sessionStorage.has = 'true'
               sessionStorage.userInfo = JSON.stringify(res2.data[0])
-              api.getUserInfo(res1.data.openid, res1.data.refresh_token, res1.data.access_token).then(res3 => {
+              api.getUserInfo(res1.data.openid, res1.data.refresh_token,
+                res1.data.access_token).then(res3 => {
                 store.commit('SET_USERINFO', res3.data.userInfo)
-                sessionStorage.wx_Info = JSON.stringify(res3.data.userInfo)
+                sessionStorage.wx_Info = JSON.stringify(res3.data
+                  .userInfo)
                 next({
                   query: {
                     openid: res1.data.openid
@@ -93,9 +95,11 @@ router.beforeEach((to, from, next) => {
               })
             } else {
               console.log('第一次进来')
-              api.getUserInfo(res1.data.openid, res1.data.refresh_token, res1.data.access_token).then(res3 => {
+              api.getUserInfo(res1.data.openid, res1.data.refresh_token,
+                res1.data.access_token).then(res3 => {
                 store.commit('SET_USERINFO', res3.data.userInfo)
-                sessionStorage.wx_Info = JSON.stringify(res3.data.userInfo)
+                sessionStorage.wx_Info = JSON.stringify(res3.data
+                  .userInfo)
                 next({
                   path: `/userBinde?code=${code}&openid=${res1.data.openid}&redirect=${redirect}`,
                   query: {
