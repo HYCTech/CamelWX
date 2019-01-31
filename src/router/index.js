@@ -66,7 +66,11 @@ export default new Router({
       name: '维修单',
       component: _import('worker/index')
     },
-
+    {
+      path: '/wxPay',
+      name: '支付',
+      component: _import('wxPay')
+    },
 
     {
       path: '/upload',

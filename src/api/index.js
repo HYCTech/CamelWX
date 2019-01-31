@@ -42,7 +42,7 @@ export const getPriRepairInfo = (filter) =>{
 //修改维修信息
 export const putRepairInfo = (id,data) => {
     return axios.put(`hycDevelop/api/order/${id}`,data);
-} 
+}
 
 //提交维修的数据
 export const addRepair = (data) => {
@@ -56,4 +56,8 @@ export const getCode = (tel)=>{
 //验证码验证
 export const valsms = (tel,code)=>{
   return axios.get(`valsms/${tel}/${code}`)
+}
+
+export const wxpay = (data) => {
+  return axios.post('/wxpay', data);
 }

@@ -62,7 +62,8 @@ export default {
       const xhr = new XMLHttpRequest();
       // console.dir(xhr)
       xhr.upload.onprogress = updateProgress;
-      xhr.open("POST", "http://api.yx101.cn/upload", true);
+      //xhr.open("POST", "http://api.yx101.cn/upload", true);
+      xhr.open("POST", "http://192.168.254.61:8888/upload", true);
       xhr.send(formData);
       xhr.onload = function(e) {
         if (this.status == 200 || this.status == 304) {

@@ -48,7 +48,7 @@ router.beforeEach((to, from, next) => {
 
   //白名单
   let WhiteList = ['/receive', '/receiveInfomation','/orderDetails']
- // login()
+  login()
   //改变标题
   setDocumentTitle(to.name)
   console.log(WhiteList.includes(to.path))
