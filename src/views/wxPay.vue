@@ -34,58 +34,74 @@ export default {
 
     submitInfo() {
 
-      let filter = JSON.stringify({openid:"oQBciw2BV7CxY7zAxkx-yzEboppI",orderId:"111",descs:"22222",totalPrice:10,spbill_create_ip:"192.168.254.61"})
+      /*let filter = JSON.stringify({openid:"oQBciw2BV7CxY7zAxkx-yzEboppI",orderId:"111",descs:"22222",totalPrice:10,spbill_create_ip:"192.168.254.61"})
       //console.log(filter)
       let params={openid:"oQBciw2BV7CxY7zAxkx-yzEboppI",orderId:"111",descs:"22222",totalPrice:10,spbill_create_ip:"192.168.254.61"}
       api.wxpay(params).then(res=>{
         //this.data=res.data
         this.toastSuccess('提交成功，请等待审核')
         console.log("=========")
-      })
+      })*/
+
+
+      let params={openid:"oQBciw2BV7CxY7zAxkx-yzEboppI",orderId:"111",descs:"22222",totalPrice:10,spbill_create_ip:"192.168.254.61"}
+
+      //获取订单号，并发起调用支付界面
+      api.wxpayOrder(params).then(res=>{
+        console.log(res.data);
+        let rt=res.data;
+        let appId=rt.appId
+        let prepay_id=rt.prepay_id
+        let nonceStr=rt.nonceStr
+        let sign=rt.paySign
+        console.log("appId: "+appId+" prepay_id:"+prepay_id+" nonceStr："+nonceStr+" sign:"+sign)
+        WeixinJSBridge.invoke("getBrandWCPayRequest",{
+            "appId" :appId, //公众号名称，由商户传⼊入
+            "timeStamp" : "189026618", //时间戳 这⾥里随意使⽤用了⼀一个值
+            "nonceStr" : nonceStr, //随机串
+            "package" :"fee_type=1&prepay_id="+prepay_id, //扩展字段，由商户传⼊入
+            "signType" : "MD5", //微信签名⽅方式:sha1
+            "paySign" : sign //微信签名
+          },
+          function(e){
+            alert(e.err_msg)
+          })
+
+       /* WeixinJSBridge.invoke("getBrandWCPayRequest",{
+            "appId" : "wxf8b4f85f3a794e77", //公众号名称，由商户传⼊入
+            "timeStamp" : "189026618", //时间戳 这⾥里随意使⽤用了⼀一个值
+            "nonceStr" : "adssdasssd13d", //随机串
+            "package" :"body=xxx&fee_type=1&input_charset=GBK&notify_url=http&out_trade_no=16642817866003386000&partner=1900000109&return_url=http&spbill_create_ip=127.0.0.1&total_fee=1&sign=273B7EEEE642A8E41F27213D8517E0E4", //扩展字段，由商户传⼊入
+            "signType" : "SHA1", //微信签名⽅方式:sha1
+            "paySign" : "b737015b5b1eabe5db580945a07eac08c7bb55f8" //微信签名
+          },
+          function(e){
+            alert(e.err_msg)
+          })*/
+
+        })
+
+
+
     },
     submitInfo2(){
       var timestamp = (new Date()).getTime();
       console.log(timestamp); //1495302061441
-      WeixinJSBridge.invoke("getBrandWCPayRequest",{
-          "appId" : "wx7e0aa09a76fe616b", //公众号名称，由商户传⼊入
-          "timeStamp" : "1548925978", //时间戳 这⾥里随意使⽤用了⼀一个值
-          "nonceStr" : "ynxwj1pzd3essqiknmlhxdi84ag1p8dr", //随机串
-          "package" : "total_fee=1&prepay_id=wx3117125624558169945833520051626580", //扩展字段，由商户传⼊入
-          "signType" : "MD5", //微信签名⽅方式:sha1
-          "paySign" : "4D12C7B589B26B4075F57FBB6BE85BAF" //微信签名*/
-      },
-        function(e){
-          alert(e.err_msg)
-        })
-    },
-    submitInfo1() {
-      var timestamp = (new Date()).getTime();
-      console.log(timestamp); //1495302061441
+
 
       WeixinJSBridge.invoke("getBrandWCPayRequest",{
-         /* "appId" : "wx7e0aa09a76fe616b", //公众号名称，由商户传⼊入
-          "timeStamp" : ""+timestamp+"", //时间戳 这⾥里随意使⽤用了⼀一个值
-          "nonceStr" : "e61463f8efa94090b1f366cccfbbb444", //随机串
-          "package" : "body=物品&fee_type=1&input_charset=GBK&notify_url=http&out_trade_no=16642817866003386000&partner=1900000109&return_url=http&spbill_create_ip=127.0.0.1&total_fee=1&sign=E993885D9F4C2715CE7F13855A8AFB38", //扩展字段，由商户传⼊入
-          "signType" : "MD5", //微信签名⽅方式:sha1
-          "paySign" : "E993885D9F4C2715CE7F13855A8AFB38" //微信签名*/
-
-         /* "appId" : "wxf8b4f85f3a794e77", //公众号名称，由商户传⼊入
-          "timeStamp" : ""+timestamp+"", //时间戳 这⾥里随意使⽤用了⼀一个值
-          "nonceStr" : "adssdasssd13dss", //随机串
-        //out_trade_no 商户订单号
-          "package" :
-            "body=xxx&fee_type=1&input_charset=GBK&notify_url=http&out_trade_no=16642817866003386000&partner=1900000109&return_url=http&spbill_create_ip=127.0.0.1&total_fee=1&sign=273B7EEEE642A8E41F27213D8517E0E4", //扩展字段，由商户传⼊入
+          "appId" : "wxf8b4f85f3a794e77", //公众号名称，由商户传⼊入
+          "timeStamp" : "189026618", //时间戳 这⾥里随意使⽤用了⼀一个值
+          "nonceStr" : "adssdasssd13d", //随机串
+          "package" :"body=xxx&fee_type=1&input_charset=GBK&notify_url=http&out_trade_no=16642817866003386000&partner=1900000109&return_url=http&spbill_create_ip=127.0.0.1&total_fee=1&sign=273B7EEEE642A8E41F27213D8517E0E4", //扩展字段，由商户传⼊入
           "signType" : "SHA1", //微信签名⽅方式:sha1
-          "paySign" : "b737015b5b1eabe5db580945a07eac08c7bb55f8" //微信签名*/
-
-
-
+          "paySign" : "b737015b5b1eabe5db580945a07eac08c7bb55f8" //微信签名
         },
         function(e){
           alert(e.err_msg)
         })
-    }
+
+    },
 
   }
 };

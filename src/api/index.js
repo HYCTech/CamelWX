@@ -61,3 +61,7 @@ export const valsms = (tel,code)=>{
 export const wxpay = (data) => {
   return axios.post('/wxpay', data);
 }
+//获取订单号
+export const wxpayOrder = (data) => {
+  return axios.post('/payOrder', data);
+}
